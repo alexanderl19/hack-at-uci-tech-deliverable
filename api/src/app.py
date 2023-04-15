@@ -1,3 +1,4 @@
+from typing import Optional
 from datetime import datetime
 from typing import Any
 
@@ -37,17 +38,20 @@ def on_shutdown() -> None:
 
 
 @app.get("/quotes")
-def get_quotes(after: str) -> JSONResponse:
+def get_quotes(after: Optional[str] = None) -> JSONResponse:
     """
     Lists all quotes after a specific ISO Date.
     """
-    after_date = datetime.fromisoformat(after)
-    posts = list(
-        filter(
-            lambda post: datetime.fromisoformat(post["time"]) >= after_date,
-            database["posts"],
+    if after:
+        after_date = datetime.fromisoformat(after)
+        posts = list(
+            filter(
+                lambda post: datetime.fromisoformat(post["time"]) >= after_date,
+                database["posts"],
+            )
         )
-    )
+    else:
+        posts = database["posts"]
 
     return JSONResponse(posts, status.HTTP_200_OK)
 
