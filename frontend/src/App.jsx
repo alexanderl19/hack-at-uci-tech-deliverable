@@ -1,6 +1,7 @@
 import "./App.css";
 
 import quotebook from "./assets/quotebook.png";
+import Quotes from "./components/Quotes";
 
 function App() {
   return (
@@ -21,13 +22,7 @@ function App() {
         <button type="submit">Submit</button>
       </form>
 
-      <h2>Previous Quotes</h2>
-      {/* TODO: Display the actual quotes from the database */}
-      <div className="messages">
-        <p>Peter Anteater</p>
-        <p>Zot Zot Zot!</p>
-        <p>Every day</p>
-      </div>
+      <Quotes />
     </div>
   );
 }
