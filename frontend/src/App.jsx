@@ -1,8 +1,14 @@
 import "./App.css";
 
+import quotebook from "./assets/quotebook.png";
+
 function App() {
   return (
     <div className="App">
+      <img
+        src={quotebook}
+        alt="black leading double quotation mark with a circle drawn around."
+      />
       <h1>Hack @ UCI Tech Deliverable</h1>
 
       <h2>Submit a quote</h2>
