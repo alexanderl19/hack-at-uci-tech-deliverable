@@ -1,5 +1,16 @@
 .app {
   width: 100%;
   max-width: 60ch;
-  margin: 0 auto;
+  margin: 24px auto 96px auto;
+}
+
+.icon {
+  width: 48px;
+  height: auto;
+}
+
+.heading {
+  font-size: 30px;
+  letter-spacing: -0.021em;
+  line-height: 42px;
 }

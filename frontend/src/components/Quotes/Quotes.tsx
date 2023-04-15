@@ -21,7 +21,7 @@ const Quotes = () => {
 
   return (
     <>
-      <h2>Previous Quotes</h2>
+      <h2 className={styles.heading}>Previous Quotes</h2>
       <div className={styles.quotes}>
         {data
           // Sort messages in decending order.

@@ -2,6 +2,8 @@ import type { FormEvent } from "react";
 import React from "react";
 import { useState } from "react";
 
+import styles from "./NewQuote.module.css";
+
 const NewQuote = () => {
   const [name, setName] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -21,7 +23,7 @@ const NewQuote = () => {
 
   return (
     <>
-      <h2>Submit a quote</h2>
+      <h2 className={styles.heading}>Submit a quote</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="input-name">Name</label>
         <input
