@@ -32,7 +32,7 @@ const NewQuote = () => {
   return (
     <>
       <h2 className={styles.heading}>Submit a quote</h2>
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <label htmlFor="input-name">Name</label>
         <input
           id="input-name"
