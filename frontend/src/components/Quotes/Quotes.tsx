@@ -3,6 +3,8 @@ import React from "react";
 import useSWR from "swr";
 import Quote from "./Quote";
 
+import styles from "./Quotes.module.css";
+
 const fetcher = (...args: Parameters<typeof fetch>) =>
   fetch(...args).then((res) => res.json());
 
@@ -20,15 +22,17 @@ const Quotes = () => {
   return (
     <>
       <h2>Previous Quotes</h2>
-      {data
-        // Sort messages in decending order.
-        ?.sort(
-          (quoteA, quoteB) =>
-            new Date(quoteB.time).valueOf() - new Date(quoteA.time).valueOf()
-        )
-        .map((quote) => (
-          <Quote {...quote} />
-        ))}
+      <div className={styles.quotes}>
+        {data
+          // Sort messages in decending order.
+          ?.sort(
+            (quoteA, quoteB) =>
+              new Date(quoteB.time).valueOf() - new Date(quoteA.time).valueOf()
+          )
+          .map((quote) => (
+            <Quote {...quote} />
+          ))}
+      </div>
     </>
   );
 };
