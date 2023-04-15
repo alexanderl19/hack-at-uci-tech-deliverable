@@ -1,10 +1,12 @@
 import type { FormEvent } from "react";
 import React from "react";
+import { useSWRConfig } from "swr";
 import { useState } from "react";
 
 import styles from "./NewQuote.module.css";
 
 const NewQuote = () => {
+  const { mutate } = useSWRConfig();
   const [name, setName] = useState<string>("");
   const [message, setMessage] = useState<string>("");
 
@@ -17,6 +19,12 @@ const NewQuote = () => {
       method: "POST",
       body: formData,
     });
+
+    mutate(
+      (key) =>
+        typeof key === "string" &&
+        key.startsWith("http://localhost:8000/quotes")
+    );
 
     e.preventDefault();
   };
