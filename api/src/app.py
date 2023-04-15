@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Any
 
 from fastapi import FastAPI, Form, status
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, JSONResponse
 
 from services.database import JSONDatabase
 
@@ -23,8 +23,24 @@ def on_shutdown() -> None:
     database.close()
 
 
-@app.post("/quote")
-def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
+@app.get("/quotes")
+def get_quotes(after: str) -> JSONResponse:
+    """
+    Lists all quotes after a specific ISO Date.
+    """
+    after_date = datetime.fromisoformat(after)
+    posts = list(
+        filter(
+            lambda post: datetime.fromisoformat(post["time"]) >= after_date,
+            database["posts"],
+        )
+    )
+
+    return JSONResponse(posts, status.HTTP_200_OK)
+
+
+@app.post("/quotes")
+def post_quote(name: str = Form(), message: str = Form()) -> RedirectResponse:
     """
     Process a user submitting a new quote.
     You should not modify this function.
@@ -38,6 +54,3 @@ def post_message(name: str = Form(), message: str = Form()) -> RedirectResponse:
     database["posts"].append(post)
 
     return RedirectResponse("/", status.HTTP_303_SEE_OTHER)
-
-
-# TODO: add another API route with a query parameter to retrieve quotes based on max age
