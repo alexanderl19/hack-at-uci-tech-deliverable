@@ -20,9 +20,15 @@ const Quotes = () => {
   return (
     <>
       <h2>Previous Quotes</h2>
-      {data?.map((quote) => (
-        <Quote {...quote} />
-      ))}
+      {data
+        // Sort messages in decending order.
+        ?.sort(
+          (quoteA, quoteB) =>
+            new Date(quoteB.time).valueOf() - new Date(quoteA.time).valueOf()
+        )
+        .map((quote) => (
+          <Quote {...quote} />
+        ))}
     </>
   );
 };
