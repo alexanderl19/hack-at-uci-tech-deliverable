@@ -4,6 +4,12 @@
   gap: 24px;
 }
 
+.info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
 .heading {
   margin: 3rem 0 1rem 0;
   font-size: 24px;
