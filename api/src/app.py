@@ -10,7 +10,7 @@ from services.database import JSONDatabase
 app = FastAPI()
 
 origins = [
-    "http://localhost:5174",
+    "http://localhost:5173",
 ]
 
 app.add_middleware(
